@@ -48,7 +48,8 @@ export async function POST(request: NextRequest) {
     );
 
     // Output can be string (URL) or string[] (multiple outputs)
-    const imageUrl = Array.isArray(output) ? output[0] : (output as string);
+    const imageUrl = Array.isArray(output) ? (output[0] as unknown as string) : (output as unknown as string);
+
     if (!imageUrl || typeof imageUrl !== "string") {
       return NextResponse.json(
         { error: "No image URL returned from AI model." },

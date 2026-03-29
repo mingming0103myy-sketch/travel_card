@@ -57,8 +57,6 @@ export async function POST(request: NextRequest) {
     }
 
     const resend = new Resend(apiKey);
-    const fromEmail =
-      process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
     const escapeHtml = (s: string) =>
       s
@@ -113,7 +111,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: fromEmail,
+      from: "hello@arria.fun",
       to: recipientEmail,
       subject: "You've received a postcard from a trip!",
       html,
